@@ -1,0 +1,16 @@
+h2
+  = link_to 'Add New', new_post_path, class: 'header-menu'
+  |  My Posts
+
+ul
+  = collection_select(:page, :name, @categories, :id, :name)
+  / = form_for([@categories,posts_path]) do |f|
+  /  = f.label :category_id
+  /  = f.collection_select :category_id, Category.all, :id, :name
+
+ul
+  - @posts.each do |post|
+    li
+      = link_to post.title, post_path(post)
+      = link_to '[Edit]', edit_post_path(post), class: 'command'
+      = link_to '[x]', post_path(post), method: :delete,  class: 'command',  data:{ confirm: 'Sure?'}

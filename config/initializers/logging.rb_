@@ -1,0 +1,25 @@
+Rails.application.configure do
+  config.lograge.enabled = true
+  config.lograge.keep_original_rails_log = true
+  config.lograge.logger = ActiveSupport::Logger.new "#{Rails.root}/log/lograge_#{Rails.env}.log"
+  config.lograge.formatter = Lograge::Formatters::Json.new
+
+  config.lograge.custom_options = lambda do |event|
+    exceptions = %w(controller action format authenticity_token)
+    data = {
+      level: 'info',
+      login_id: event.payload[:login_id],
+      ip: event.payload[:ip],
+      referer: event.payload[:referer],
+      user_agent: event.payload[:user_agent],
+      time: event.time.iso8601,
+      params: event.payload[:params].except(*exceptions)
+    }
+    if event.payload[:exception]
+      data[:level] = 'fatal'
+      data[:exception] = event.payload[:exception]
+      data[:exception_backtrace] = event.payload[:exception_object].backtrace[0..6]
+    end
+    data
+  end
+end

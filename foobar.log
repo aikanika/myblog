@@ -1,0 +1,8 @@
+2018-10-02T14:00:30.000Z [DEBUG] Added outputter 'log4r' to 'log4r'
+2018-10-02T14:02:05.000Z [DEBUG] Added outputter 'log4r' to 'log4r'
+2018-10-02T14:02:06.000Z [DEBUG] Logger 'Application Log' set to ALL
+2018-10-02T14:02:06.000Z [DEBUG] Outputter 'log4r' level is ALL
+2018-10-02T14:02:06.000Z [DEBUG] Outputter 'log4r' using Log4r::DefaultFormatter
+2018-10-02T14:02:06.000Z [DEBUG] FileOutputter 'log4r' writing to foobar.log
+2018-10-02T14:02:06.000Z [DEBUG] Outputter 'log4r' using Log4r::PatternFormatter
+2018-10-02T14:02:06.000Z [DEBUG] Added outputter 'log4r' to 'log4r'

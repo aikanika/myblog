@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Myblog</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="whole">
+      <section class="menu">
+        <div class="menu_inner">
+          <nav>
+            <h1><%= link_to image_tag('logo.png', class: 'logo'), root_path %></h1>
+            <ul>
+              
+            </ul>
+          </nav>
+        </div>
+      </section>
+      <div class="container">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>
