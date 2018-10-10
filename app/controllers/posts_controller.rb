@@ -5,7 +5,8 @@ class PostsController < ApplicationController
   def index
     @categories = Category.all.order(id: :asc)
     #作成日の降順で表示
-    @posts = Post.find(category_id: @categories.id[0]).order(created_at: :desc)
+    @posts = Post.all.order(created_at: :desc)
+#    @posts = Post.find(category_id: @categories.id[0]).order(created_at: :desc)
     # logger.debug @categories.inspect
     # logger.debug @posts.inspect
   end
