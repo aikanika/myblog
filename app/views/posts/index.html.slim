@@ -3,11 +3,13 @@ h2
   |  My Posts
 
 ul
-  = collection_select(:page, :name, @categories, :id, :name, :include_blank => '選択してください')
-  / = form_for([@categories,posts_path]) do |f|
-  /  = f.label :category_id
-  /  = f.collection_select :category_id, Category.all, :id, :name
 
+  / = collection_select(:category, :id, @categories, :id, :name, :include_blank => '選択してください')
+  = form_tag(posts_path, method: "get") do
+    = select_tag( :category_id,
+    options_from_collection_for_select(Category.all, :id, :name, params[:category_id].to_i),
+     :include_blank => '選択してください')
+    = submit_tag "絞り込み"
 ul
   - @posts.each do |post|
     li
