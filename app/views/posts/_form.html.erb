@@ -1,5 +1,12 @@
 <%# newとeditで共通 %>
 <%= form_for @post do |f| %>
+<p> Category <p>
+<p>
+  <%= f.collection_select(:category_id, Category.all, :id, :name, :selected => @post.category_id,:include_blank => '選択してください') %>
+  <% if@post.errors.messages[:category_id].any? %>
+  <span class="error"><%= @post.errors.messages[:category_id][0] %></span>
+  <% end %>
+</p>
 <p>
   <%= f.text_field :title,placeholder: 'enter title' %>
   <% if@post.errors.messages[:title].any? %>
