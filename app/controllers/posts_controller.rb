@@ -3,17 +3,14 @@ class PostsController < ApplicationController
 
   # blog一覧表示
   def index
-    @categories = Category.all.order(id: :asc)
+
     #作成日の降順で表示
     @posts = Post.all.order(created_at: :desc)
-    logger.debug "テスト"
-    logger.debug params[:category_id]
+
     if params[:category_id].present?
       @posts = Post.get_by_category_id params[:category_id]
     end
-#    @posts = Post.find(category_id: @categories.id[0]).order(created_at: :desc)
-    # logger.debug @categories.inspect
-    # logger.debug @posts.inspect
+
   end
 
   # 詳細画面表示
@@ -67,8 +64,6 @@ class PostsController < ApplicationController
   private
     def post_params
       # strong parameter : パラメータを強めにチェックする
-      logger.debug "カテゴリ"
-      logger.debug params.inspect
       params.require(:post).permit(:category_id,:title,:body)
     end
 end

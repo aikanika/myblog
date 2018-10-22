@@ -10,20 +10,37 @@
   </head>
 
   <body>
-    <div class="whole">
-      <section class="menu">
-        <div class="menu_inner">
+    <div class="tech">
+      <section class="tech__menu">
+        <div class="tech__menu__inner">
           <nav>
-            <h1><%= link_to image_tag('logo.png', class: 'logo'), root_path %></h1>
             <ul>
-              
+              <li class='home'>
+                <a href="/"><span class='text'>Myblog.jp</span>
+                  <button name="button" type="submit" class="close toggle-menu">x</button>
+                </a>
+              </li>
+              <% if @categories.present?  #カテゴリがある時表示 %>
+                <% @categories.each do |category| %>
+                <li>
+                  <%= link_to category.name, root_path(category_id: category.id) %>
+                </li>
+                <% end %>
+              <% end %>
             </ul>
           </nav>
         </div>
       </section>
-      <div class="container">
-        <%= yield %>
-      </div>
+      <section class='tech__main'>
+        <section class='tech__main__header'>
+          <button name="menu" type="submit" class="toggle-menu show-menu">MENU </button>
+        </section>
+        <section class='tech__main__inner'>
+          <div class='tech__main__inner__content'>
+            <%= yield %>
+          </div>
+        </section>
+      </section>
     </div>
   </body>
 </html>
