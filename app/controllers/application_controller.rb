@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :current_user
   before_action :require_sign_in!
   helper_method :signed_in?
+  PER = 7
 
   #CSRF対策
   protect_from_forgery with: :exception

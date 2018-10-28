@@ -2,3 +2,4 @@ ul
   - @posts.each do |post|
     h1 class='tech-article__title'
       = link_to post.title, post_path(post)
+  = paginate @posts

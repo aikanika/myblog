@@ -13,3 +13,4 @@ article class="tech-article"
         = link_to post.title, post_path(post),class: 'tech-article__title'
         = link_to '[Edit]', edit_post_path(post), class: 'command'
         = link_to '[x]', post_path(post), method: :delete,  class: 'command',  data:{ confirm: 'Sure?'}
+  = paginate @posts
