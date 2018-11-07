@@ -14,6 +14,11 @@ class BlogsController < ApplicationController
     end
   end
 
+  # 詳細画面表示
+  def show
+    @categories = Category.all.order(id: :asc)
+    @post = Post.find(params[:id])
+  end
 
 
 end

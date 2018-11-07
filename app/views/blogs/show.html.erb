@@ -1,0 +1,26 @@
+<article class="tech-article">
+  <h2 class="tech-article__title"><%= @post.title %></h2>
+  <!-- 改行を有効にする：simple_format -->
+  <div class="tech-article__body">
+    <%= simple_format @post.body %>
+  </div>
+
+  <h3>Comments</h3>
+  <% if @post.comments.any? %>
+  <ul>
+    <% @post.comments.each do |comment| %>
+    <li>
+      <%= comment.body %>
+    </li>
+    <% end %>
+  </ul>
+  <% end %>
+  <%= form_for([@post, @post.comments.build]) do |f| %>
+  <p>
+    <%= f.text_field :body %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+  <% end %>
+</article>

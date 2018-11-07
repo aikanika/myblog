@@ -12,5 +12,30 @@
 //
 //= require rails-ujs
 //= require activestorage
+//= require jquery
 //= require turbolinks
+//= require bootstrap
 //= require_tree .
+
+(function () {
+  var t;
+  t = function () {
+    var t, e, n;
+    return n = $(".tech__main__inner__side"), t = $(".tech__main__footer"), e = $(".footer-inner"), n.height() > 0 ? e.show() : $(window).on("scroll", function () {
+      return $(window).scrollTop() + $(window).height() > t.offset().top + t.outerHeight() / 4 ? e.fadeIn() : e.fadeOut()
+    })
+  }, $(document).on("turbolinks:load", t)
+}).call(this),
+(function () {
+  var t;
+  t = function () {
+    var t, e, n;
+    return e = $(".toggle-menu"), t = $(".tech__menu"), e.on("click", function (e) {
+      return e.preventDefault(), "0px" === t.css("left") ? t.animate({
+        left: -200
+      }, 300) : t.animate({
+        left: 0
+      }, 300)
+    }), n = t.find("nav").attr("data-tag-request"), t.find("nav li").removeClass("active"), t.find('nav li[data-tag="' + n + '"]').addClass("active")
+  }, $(document).on("turbolinks:load", t)
+}).call(this);

@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
   end
 
+  resources :blogs
+  
   root 'blogs#index'
 #  root 'users#new'
 

@@ -34,6 +34,9 @@
       <section class='tech__main'>
         <section class='tech__main__header'>
           <button name="menu" type="submit" class="toggle-menu show-menu">MENU </button>
+          <% if controller.controller_name == "posts" %>
+            <%= render 'header' %>
+          <% end %>
         </section>
         <section class='tech__main__inner'>
           <div class='tech__main__inner__content'>

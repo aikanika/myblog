@@ -7,6 +7,8 @@ gem 'slim-rails', '~> 3.1.3'
 #gem 'lograge'
 gem 'log4r'
 gem 'kaminari', '~> 0.17.0'
+gem 'bootstrap-sass', '3.3.6'
+gem 'jquery-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
