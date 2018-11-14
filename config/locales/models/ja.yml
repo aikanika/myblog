@@ -1,0 +1,16 @@
+ja:
+  activerecord:
+    models:
+      post: 記事
+      user: ユーザ情報
+    attributes:
+      post:
+        category_id: カテゴリ
+        title: タイトル
+        body: 記事内容
+        tags: タグ
+      user:
+        name: 名前
+        mail: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード確認

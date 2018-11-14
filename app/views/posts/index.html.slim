@@ -1,16 +1,15 @@
 article class="tech-article"
-  h2
-    = link_to 'Add New', new_post_path, class: 'header-menu'
+  h1 過去の記事一覧
   ul
     = form_tag(posts_path, method: "get") do
       = select_tag( :category_id,
         options_from_collection_for_select(Category.all, :id, :name, params[:category_id].to_i),
-        :include_blank => '選択してください')
+        :include_blank => 'カテゴリを選択してください')
       = submit_tag "絞り込み"
   ul
     - @posts.each do |post|
-      li
-        = link_to post.title, post_path(post),class: 'tech-article__title'
+      h1[class='tech-article__title']
+        = link_to post.title, post_path(post)
         = link_to '[Edit]', edit_post_path(post), class: 'command'
-        = link_to '[x]', post_path(post), method: :delete,  class: 'command',  data:{ confirm: 'Sure?'}
+        = link_to '[x]', post_path(post), method: :delete,  class: 'command',  data:{ confirm: '削除しますか?'}
   = paginate @posts

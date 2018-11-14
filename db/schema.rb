@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2018_10_07_113636) do
     t.string "tags"
     t.text "body"
     t.bigint "category_id"
+    t.integer "published", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_posts_on_category_id"

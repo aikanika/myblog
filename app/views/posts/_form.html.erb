@@ -1,25 +1,61 @@
 <%# newとeditで共通 %>
 <%= form_for @post do |f| %>
-<p> Category <p>
+
 <p>
-  <%= f.collection_select(:category_id, Category.all, :id, :name, :selected => @post.category_id,:include_blank => '選択してください') %>
+  <%= f.collection_select(:category_id, Category.all, :id, :name, :selected => @post.category_id,:include_blank => 'カテゴリを選択してください') %>
   <% if@post.errors.messages[:category_id].any? %>
-  <span class="error"><%= @post.errors.messages[:category_id][0] %></span>
+    <span class="error"><%= @post.errors.full_messages_for(:category_id)[0] %></span>
   <% end %>
 </p>
 <p>
-  <%= f.text_field :title,placeholder: 'enter title' %>
+  <%= f.text_field :title,placeholder: 'タイトルを入力してください' %>
   <% if@post.errors.messages[:title].any? %>
-  <span class="error"><%= @post.errors.messages[:title][0] %></span>
+    <span class="error"><%= @post.errors.full_messages_for(:title)[0] %></span>
   <% end %>
 </p>
 <p>
-  <%= f.text_area :body,placeholder: 'enter body text' %>
-  <% if@post.errors.messages[:body].any? %>
-  <span class="error"><%= @post.errors.messages[:body][0] %></span>
+  ※複数タグをカンマ区切りで入力できます。
+  <%= f.text_field :tags,placeholder: 'タグを入力してください' %>
+  <% if@post.errors.messages[:tags].any? %>
+    <span class="error"><%= @post.errors.full_messages_for(:tags)[0] %></span>
   <% end %>
+</p>
+<p>
+  <div id='editor'>
+    ※マークダウンが使えます。
+    <textarea name="post[body]" id="n" class="form-control" rows="20" v-model='input' debounce='50' placeholder='記事内容を入力してください'><%= @post.body %></textarea>
+    <% if@post.errors.messages[:body].any? %>
+      <span class="error"><%= @post.errors.full_messages_for(:body)[0] %></span>
+    <% end %>
+    <div class="di_inline_t preview">
+      <div v-html='input | marked' style: :"width: 650px;"></div>
+    </div>
+  </div>
+
+</p>
+
+
+<p>
+  <label class="checkbox-inline">
+    <%= f.check_box :published,{},checked_value = "1", unchecked_value = "0" %>
+    公開
+  </label>
 </p>
 <p>
   <%= f.submit %>
 </p>
 <% end %>
+
+<script type="text/javascript">
+ window.onload = function() {
+ new Vue({
+ el: '#editor',
+ data: {
+ input: '<%== j @post.body %>',
+ },
+ filters: {
+ marked: marked,
+ },
+ });
+ };
+</script>

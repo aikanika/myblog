@@ -6,6 +6,8 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.js'></script>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -33,7 +35,10 @@
       </section>
       <section class='tech__main'>
         <section class='tech__main__header'>
-          <button name="menu" type="submit" class="toggle-menu show-menu">MENU </button>
+          <% if controller.controller_name == "blogs" %>
+            <button name="menu" type="submit" class="toggle-menu show-menu">MENU </button>
+          <% end %>
+
           <% if controller.controller_name == "posts" %>
             <%= render 'header' %>
           <% end %>
@@ -42,7 +47,12 @@
           <div class='tech__main__inner__content'>
             <%= yield %>
           </div>
+          <div class='tech__main__inner__side'>
+          </div>
         </section>
+        <% if controller.controller_name == "blogs" %>
+          <%= render 'footer' %>
+        <% end %>
       </section>
     </div>
   </body>

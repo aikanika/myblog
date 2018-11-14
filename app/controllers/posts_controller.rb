@@ -65,6 +65,7 @@ class PostsController < ApplicationController
   private
     def post_params
       # strong parameter : パラメータを強めにチェックする
-      params.require(:post).permit(:category_id,:title,:body)
+      params.require(:post).permit(:category_id,:title,:tags,:body,:published)
     end
+
 end

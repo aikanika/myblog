@@ -20,7 +20,6 @@ class ApplicationController < ActionController::Base
     user.update!(remember_token: User.encrypt(remember_token))
     @current_user = user
     redirect_to posts_path
-    logger.debug "リダイレクト"
   end
 
   def sign_out
