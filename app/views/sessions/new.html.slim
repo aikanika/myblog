@@ -1,7 +1,8 @@
 = form_for :session, url: login_path do |f|
-  = f.label 'メールアドレス'
-  = f.text_field :mail
-  = f.label 'パスワード'
-  = f.password_field :password
-  
+  .form-group
+    = f.label 'メールアドレス'
+    = f.text_field :mail
+    = f.label 'パスワード'
+    = f.password_field :password
+
   = f.submit 'ログイン'
