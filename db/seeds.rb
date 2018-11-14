@@ -14,13 +14,13 @@ Category.create(id:2,name:"Category 2")
 Category.create(id:3,name:"Category 3")
 
 3.times do |i|
-   Post.create(title:"title 1-#{i}",body:"body 1-#{i}",category_id: "1",published: 1)
+   Post.create(title:"title 1-#{i}",tags:"Category1",body:"body 1-#{i}",category_id: "1",published: 1)
 end
 2.times do |i|
-   Post.create(title:"title 2-#{i}",body:"body 2-#{i}",category_id: "2",published: 1)
+   Post.create(title:"title 2-#{i}",tags:"Category2",body:"body 2-#{i}",category_id: "2",published: 1)
 end
 4.times do |i|
-   Post.create(title:"title 3-#{i}",body:"body 3-#{i}",category_id: "3",published: 1)
+   Post.create(title:"title 3-#{i}",tags:"Category3",body:"body 3-#{i}",category_id: "3",published: 1)
 end
 
 
