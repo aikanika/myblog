@@ -1,11 +1,10 @@
-<script src='https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.js'></script>
+
 
 <article class="tech-article">
   <h2 class="tech-article__title"><%= @post.title %></h2>
   <!-- 改行を有効にする：simple_format -->
   <div class="tech-article__body">
-    <%= qiita_markdown(@post.body) %>
+    <%= markdown(@post.body) %>
   </div>
 
   <h3>Comments</h3>

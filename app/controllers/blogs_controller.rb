@@ -6,9 +6,7 @@ class BlogsController < ApplicationController
     @categories = Category.all.order(id: :asc)
 
     #作成日の降順で表示
-    @posts = Post.all.order(created_at: 'desc')
-    #@posts = Post.all.order(created_at: :desc)
-    @posts = Post.all.order(created_at: :desc).page(params[:page]).per(PER)
+    @posts = Post.where(published: "1").order(created_at: :desc).page(params[:page]).per(PER)
     if params[:category_id].present?
       @posts = Post.get_by_category_id(params[:category_id],"1").page(params[:page]).per(PER)
     end
