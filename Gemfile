@@ -14,7 +14,7 @@ gem 'rails-i18n'
 gem 'qiita-markdown'
 gem 'github-linguist'
 #gem 'charlock_homes', '~> 0.7.3'
-#gem 'rugged', '~> 0.27.5'
+gem 'rugged', '~> 0.27.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
