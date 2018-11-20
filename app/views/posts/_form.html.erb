@@ -27,13 +27,14 @@
     <% if@post.errors.messages[:body].any? %>
       <span class="error"><%= @post.errors.full_messages_for(:body)[0] %></span>
     <% end %>
-    <div class="di_inline_t preview">
+
+    プレビュー
+    <div class="preview">
       <div v-html='input | marked' style: :"width: 650px;"></div>
     </div>
   </div>
 
 </p>
-
 
 <p>
   <label class="checkbox-inline">
@@ -47,15 +48,16 @@
 <% end %>
 
 <script type="text/javascript">
- window.onload = function() {
- new Vue({
- el: '#editor',
- data: {
- input: '<%== j @post.body %>',
- },
- filters: {
- marked: marked,
- },
+
+ $(document).ready(function(){
+   new Vue({
+     el: '#editor',
+     data: {
+       input: '<%= j @post.body %>',
+     },
+     filters: {
+       marked: marked,
+     },
+   });
  });
- };
 </script>

@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
+  mount_uploaders :image, ImageUploader
   # @post.commnets
   validates :title, presence: true , length:{minimum:3, message: 'Too short to post!'}
   validates :tags, presence: true

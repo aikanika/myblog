@@ -4,21 +4,21 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments, only: [:create, :destroy]
   end
-
   resources :blogs
-  
+  resources :users, only: [:create, :edit, :update]
+
   root 'blogs#index'
 #  root 'users#new'
 
   #管理画面へ
   get   'posts', to: 'posts#index'
 
-    # ログイン / ログアウト
+  # ログイン / ログアウト
   get     'login',   to: 'sessions#new'
   post    'login',   to: 'sessions#create'
   delete  'logout',  to: 'sessions#destroy'
 
   # ユーザ登録
-  get 'users', to: 'users#new'
+  get 'signup', to: 'users#new'
   post 'users', to: 'users#create'
 end

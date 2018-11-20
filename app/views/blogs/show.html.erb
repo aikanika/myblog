@@ -1,9 +1,9 @@
 <article class="tech-article">
   <h2 class="tech-article__title"><%= @post.title %></h2>
   <!-- 改行を有効にする：simple_format -->
-  <div class="tech-article__body">
-    <%= simple_format @post.body %>
-  </div>
+
+    <%= markdown(@post.body) %>
+
 
   <h3>Comments</h3>
   <% if @post.comments.any? %>

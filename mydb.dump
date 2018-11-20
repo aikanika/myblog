@@ -1,0 +1,116 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.6.10
+-- Dumped by pg_dump version 9.6.10
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Data for Name: ar_internal_metadata; Type: TABLE DATA; Schema: public; Owner: test
+--
+
+COPY public.ar_internal_metadata (key, value, created_at, updated_at) FROM stdin;
+environment	development	2018-11-12 15:46:25.470134	2018-11-12 15:46:25.470134
+\.
+
+
+--
+-- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: test
+--
+
+COPY public.categories (id, name, created_at, updated_at) FROM stdin;
+1	Category 1	2018-11-12 15:46:43.951608	2018-11-12 15:46:43.951608
+2	Category 2	2018-11-12 15:46:43.96045	2018-11-12 15:46:43.96045
+3	Category 3	2018-11-12 15:46:43.963484	2018-11-12 15:46:43.963484
+\.
+
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: test
+--
+
+SELECT pg_catalog.setval('public.categories_id_seq', 1, false);
+
+
+--
+-- Data for Name: posts; Type: TABLE DATA; Schema: public; Owner: test
+--
+
+COPY public.posts (id, title, tags, body, category_id, published, created_at, updated_at) FROM stdin;
+1	title 1-0	\N	body 1-0	1	1	2018-11-12 15:46:43.972773	2018-11-12 15:46:43.972773
+2	title 1-1	\N	body 1-1	1	1	2018-11-12 15:46:43.975775	2018-11-12 15:46:43.975775
+3	title 1-2	\N	body 1-2	1	1	2018-11-12 15:46:43.978222	2018-11-12 15:46:43.978222
+4	title 2-0	\N	body 2-0	2	1	2018-11-12 15:46:43.980714	2018-11-12 15:46:43.980714
+5	title 2-1	\N	body 2-1	2	1	2018-11-12 15:46:43.983143	2018-11-12 15:46:43.983143
+6	title 3-0	\N	body 3-0	3	1	2018-11-12 15:46:43.985289	2018-11-12 15:46:43.985289
+7	title 3-1	\N	body 3-1	3	1	2018-11-12 15:46:43.987782	2018-11-12 15:46:43.987782
+8	title 3-2	\N	body 3-2	3	1	2018-11-12 15:46:43.990772	2018-11-12 15:46:43.990772
+9	title 3-3	aa	body 3-3	3	1	2018-11-12 15:46:43.993365	2018-11-13 12:40:04.566937
+10	マークダウンテスト	markdown,aa	*イタリック*\r\n_イタリック_\r\n**太字**\r\n__太字__\r\n# 見出し1\r\n## 見出し2\r\n#### 見出し4\r\n######　見出し6\r\n(空行)\r\n* リスト項目1\r\n+ リスト項目2\r\n- リスト項目3\r\n(空行)\r\n\r\n(空行)\r\n1. リスト項目1\r\n2. リスト項目2\r\n3. リスト項目3\r\n(空行)\r\n	1	1	2018-11-13 14:31:48.616975	2018-11-14 09:33:17.92129
+\.
+
+
+--
+-- Data for Name: comments; Type: TABLE DATA; Schema: public; Owner: test
+--
+
+COPY public.comments (id, body, post_id, category_id, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: comments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: test
+--
+
+SELECT pg_catalog.setval('public.comments_id_seq', 1, true);
+
+
+--
+-- Name: posts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: test
+--
+
+SELECT pg_catalog.setval('public.posts_id_seq', 10, true);
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: test
+--
+
+COPY public.schema_migrations (version) FROM stdin;
+20181007060126
+20181007095942
+20181007101128
+20181007113636
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: test
+--
+
+COPY public.users (id, name, mail, password_digest, remember_token, created_at, updated_at) FROM stdin;
+1	test_user	test@gmail.com	$2a$10$HwjtT6pD2CfVJBioWFJevOuR.m7OeFVbyt2rKk3sni/vB95PNCSJ6	0493f86c516fa19f24daa0ac8bc86479411adb8f5263a4d227d4c1298ba4419d	2018-11-12 15:46:44.003019	2018-11-14 09:31:48.16752
+\.
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: test
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 1, true);
+
+
+--
+-- PostgreSQL database dump complete
+--
+

@@ -6,7 +6,6 @@ class PostsController < ApplicationController
   def index
 
     #作成日の降順で表示
-    #@posts = Post.all.order(created_at: :desc)
     @posts = Post.all.order(created_at: :desc).page(params[:page]).per(PER)
     if params[:category_id].present?
       @posts = Post.get_by_category_id(params[:category_id]).page(params[:page]).per(PER)
@@ -65,7 +64,7 @@ class PostsController < ApplicationController
   private
     def post_params
       # strong parameter : パラメータを強めにチェックする
-      params.require(:post).permit(:category_id,:title,:tags,:body,:published)
+      params.require(:post).permit(:category_id,:title,:tags,:body,:published,{image: []})
     end
 
 end

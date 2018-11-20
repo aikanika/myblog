@@ -3,17 +3,13 @@ class SessionsController < ApplicationController
   before_action :set_user, only: [:create]
 
   def new
-#    logger.debug "テスト"
 
   end
 
   def create
+    #暗号化されてないパスワードとpassword_digest属性値の一致を検証
     if @user.authenticate(session_params[:password])
       sign_in(@user)
-#      redirect_to controller: 'posts', action: 'list'
-#logger.debug @user.inspect
-
-      #redirect_to posts_path
     else
       flash.now[:danger] = t('.flash.invalid_password')
       render 'new'

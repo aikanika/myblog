@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2018_10_07_113636) do
     t.string "title"
     t.string "tags"
     t.text "body"
+    t.json "image"
     t.bigint "category_id"
     t.integer "published", default: 0
     t.datetime "created_at", null: false
@@ -47,6 +48,8 @@ ActiveRecord::Schema.define(version: 2018_10_07_113636) do
     t.string "mail", limit: 191, null: false
     t.string "password_digest", limit: 191, null: false
     t.string "remember_token", limit: 191
+    t.string "image"
+    t.text "introduction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
