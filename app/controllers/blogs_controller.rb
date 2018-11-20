@@ -3,6 +3,7 @@ class BlogsController < ApplicationController
 
   # blog一覧表示
   def index
+    @user = User.all.first
     @categories = Category.all.order(id: :asc)
 
     #作成日の降順で表示

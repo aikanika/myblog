@@ -20,7 +20,7 @@ SET row_security = off;
 --
 
 COPY public.ar_internal_metadata (key, value, created_at, updated_at) FROM stdin;
-environment	development	2018-11-12 15:46:25.470134	2018-11-12 15:46:25.470134
+environment	development	2018-11-20 08:34:47.290276	2018-11-20 08:34:47.290276
 \.
 
 
@@ -29,9 +29,9 @@ environment	development	2018-11-12 15:46:25.470134	2018-11-12 15:46:25.470134
 --
 
 COPY public.categories (id, name, created_at, updated_at) FROM stdin;
-1	Category 1	2018-11-12 15:46:43.951608	2018-11-12 15:46:43.951608
-2	Category 2	2018-11-12 15:46:43.96045	2018-11-12 15:46:43.96045
-3	Category 3	2018-11-12 15:46:43.963484	2018-11-12 15:46:43.963484
+1	Category 1	2018-11-20 08:34:55.826394	2018-11-20 08:34:55.826394
+2	Category 2	2018-11-20 08:34:55.838744	2018-11-20 08:34:55.838744
+3	Category 3	2018-11-20 08:34:55.851523	2018-11-20 08:34:55.851523
 \.
 
 
@@ -46,17 +46,16 @@ SELECT pg_catalog.setval('public.categories_id_seq', 1, false);
 -- Data for Name: posts; Type: TABLE DATA; Schema: public; Owner: test
 --
 
-COPY public.posts (id, title, tags, body, category_id, published, created_at, updated_at) FROM stdin;
-1	title 1-0	\N	body 1-0	1	1	2018-11-12 15:46:43.972773	2018-11-12 15:46:43.972773
-2	title 1-1	\N	body 1-1	1	1	2018-11-12 15:46:43.975775	2018-11-12 15:46:43.975775
-3	title 1-2	\N	body 1-2	1	1	2018-11-12 15:46:43.978222	2018-11-12 15:46:43.978222
-4	title 2-0	\N	body 2-0	2	1	2018-11-12 15:46:43.980714	2018-11-12 15:46:43.980714
-5	title 2-1	\N	body 2-1	2	1	2018-11-12 15:46:43.983143	2018-11-12 15:46:43.983143
-6	title 3-0	\N	body 3-0	3	1	2018-11-12 15:46:43.985289	2018-11-12 15:46:43.985289
-7	title 3-1	\N	body 3-1	3	1	2018-11-12 15:46:43.987782	2018-11-12 15:46:43.987782
-8	title 3-2	\N	body 3-2	3	1	2018-11-12 15:46:43.990772	2018-11-12 15:46:43.990772
-9	title 3-3	aa	body 3-3	3	1	2018-11-12 15:46:43.993365	2018-11-13 12:40:04.566937
-10	マークダウンテスト	markdown,aa	*イタリック*\r\n_イタリック_\r\n**太字**\r\n__太字__\r\n# 見出し1\r\n## 見出し2\r\n#### 見出し4\r\n######　見出し6\r\n(空行)\r\n* リスト項目1\r\n+ リスト項目2\r\n- リスト項目3\r\n(空行)\r\n\r\n(空行)\r\n1. リスト項目1\r\n2. リスト項目2\r\n3. リスト項目3\r\n(空行)\r\n	1	1	2018-11-13 14:31:48.616975	2018-11-14 09:33:17.92129
+COPY public.posts (id, title, tags, body, image, category_id, published, created_at, updated_at) FROM stdin;
+1	title 1-0	Category1	body 1-0	\N	1	1	2018-11-20 08:34:55.861568	2018-11-20 08:34:55.861568
+2	title 1-1	Category1	body 1-1	\N	1	1	2018-11-20 08:34:55.866451	2018-11-20 08:34:55.866451
+3	title 1-2	Category1	body 1-2	\N	1	1	2018-11-20 08:34:55.869299	2018-11-20 08:34:55.869299
+4	title 2-0	Category2	body 2-0	\N	2	1	2018-11-20 08:34:55.872151	2018-11-20 08:34:55.872151
+5	title 2-1	Category2	body 2-1	\N	2	1	2018-11-20 08:34:55.875032	2018-11-20 08:34:55.875032
+6	title 3-0	Category3	body 3-0	\N	3	1	2018-11-20 08:34:55.877918	2018-11-20 08:34:55.877918
+7	title 3-1	Category3	body 3-1	\N	3	1	2018-11-20 08:34:55.880728	2018-11-20 08:34:55.880728
+8	title 3-2	Category3	body 3-2	\N	3	1	2018-11-20 08:34:55.883582	2018-11-20 08:34:55.883582
+9	title 3-3	Category3	body 3-3	\N	3	1	2018-11-20 08:34:55.886686	2018-11-20 08:34:55.886686
 \.
 
 
@@ -72,14 +71,14 @@ COPY public.comments (id, body, post_id, category_id, created_at, updated_at) FR
 -- Name: comments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: test
 --
 
-SELECT pg_catalog.setval('public.comments_id_seq', 1, true);
+SELECT pg_catalog.setval('public.comments_id_seq', 1, false);
 
 
 --
 -- Name: posts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: test
 --
 
-SELECT pg_catalog.setval('public.posts_id_seq', 10, true);
+SELECT pg_catalog.setval('public.posts_id_seq', 9, true);
 
 
 --
@@ -98,8 +97,9 @@ COPY public.schema_migrations (version) FROM stdin;
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: test
 --
 
-COPY public.users (id, name, mail, password_digest, remember_token, created_at, updated_at) FROM stdin;
-1	test_user	test@gmail.com	$2a$10$HwjtT6pD2CfVJBioWFJevOuR.m7OeFVbyt2rKk3sni/vB95PNCSJ6	0493f86c516fa19f24daa0ac8bc86479411adb8f5263a4d227d4c1298ba4419d	2018-11-12 15:46:44.003019	2018-11-14 09:31:48.16752
+COPY public.users (id, name, mail, password_digest, remember_token, image, introduction, created_at, updated_at) FROM stdin;
+2	愛華	test2@gmail.com	$2a$10$1e6k52RuF7spUFBmSJy8/eVAPavQfGAPLUBjV0nBBW.X84hCjsYge	\N	\N	\N	2018-11-20 08:49:48.139002	2018-11-20 08:49:48.139002
+1	test_user	test@gmail.com	$2a$10$HwjtT6pD2CfVJBioWFJevOuR.m7OeFVbyt2rKk3sni/vB95PNCSJ6	b473d927a683803070d1050091d37d7d395a413888f99727625f32c3ec705a0d	0115.png	WebDevelopper/Project Manager	2018-11-20 08:34:55.897296	2018-11-20 14:23:22.388276
 \.
 
 
@@ -107,7 +107,7 @@ COPY public.users (id, name, mail, password_digest, remember_token, created_at, 
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: test
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 1, true);
+SELECT pg_catalog.setval('public.users_id_seq', 2, true);
 
 
 --
