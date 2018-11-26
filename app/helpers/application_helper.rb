@@ -18,4 +18,8 @@ module ApplicationHelper
        markdown_to_html = Redcarpet::Markdown.new(coderayified, options)
        markdown_to_html.render(text).html_safe
     end
+
+    def date_format(datetime)
+      time_ago_in_words(datetime) + '前'
+    end
 end

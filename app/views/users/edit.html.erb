@@ -6,7 +6,11 @@
 
   <div class="form-group">
     <%= f.label :image, 'プロフィール画像 ＜現在登録されている画像＞' %>
-    <%= image_tag @user.image.url %>
+    <%if @user.image.blank? %>
+      なし
+    <%else%>
+      <%= image_tag @user.image.url, size: '200x200' %>
+    <%end%>
   </div>
   <div class="form-group">
     <%= f.label :image, '新しいプロフィール画像' %>

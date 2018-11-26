@@ -15,10 +15,7 @@
 </p>
 <p>
   ※複数タグをカンマ区切りで入力できます。
-  <%= f.text_field :tags,placeholder: 'タグを入力してください' %>
-  <% if@post.errors.messages[:tags].any? %>
-    <span class="error"><%= @post.errors.full_messages_for(:tags)[0] %></span>
-  <% end %>
+  <%= text_field_tag 'post[tag_list]', @post.tag_list.join(',')  %>
 </p>
 <p>
   <div id='editor'>

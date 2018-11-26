@@ -1,5 +1,12 @@
-ul
-  - @posts.each do |post|
-    h1 class='tech-article__title'
-      = link_to post.title, blog_path(post)
-  = paginate @posts
+article class='tech-article'
+  ul
+    - @posts.each do |post|
+      h1 class='tech-article__title' style="margin: 2em 0 5px;"
+        = link_to post.title, blog_path(post)
+      .tech-article__date
+        = date_format(post.updated_at)
+      .tech-article__tags
+        - post.tag_list.each do |tag|
+          = link_to tag, root_path(tag: tag)
+          = ' '
+    = paginate @posts

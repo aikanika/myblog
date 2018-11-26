@@ -15,4 +15,6 @@
   - if@user.errors.messages[:mail].any?
     span.error= '※' + @user.errors.full_messages_for(:mail)[0]
     br/
+
+
   = f.submit '登録'

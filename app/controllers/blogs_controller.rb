@@ -11,10 +11,14 @@ class BlogsController < ApplicationController
     if params[:category_id].present?
       @posts = Post.get_by_category_id(params[:category_id],"1").page(params[:page]).per(PER)
     end
+    if params[:tag].present?
+      @posts = Post.tagged_with(params[:tag]).page(params[:page]).per(PER)
+    end
   end
 
   # 詳細画面表示
   def show
+    @user = User.all.first
     @categories = Category.all.order(id: :asc)
     @post = Post.find(params[:id])
   end

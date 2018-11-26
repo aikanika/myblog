@@ -45,6 +45,7 @@ class PostsController < ApplicationController
   # 更新処理
   def update
     @post = Post.find(params[:id])
+
     if @post.update(post_params)
       redirect_to posts_path #一覧に戻る
     else
@@ -64,7 +65,12 @@ class PostsController < ApplicationController
   private
     def post_params
       # strong parameter : パラメータを強めにチェックする
-      params.require(:post).permit(:category_id,:title,:tags,:body,:published,{image: []})
+      params.require(:post).permit(:category_id,
+        :title,
+        :tag_list,
+        :body,
+        :published,
+        {image: []})
     end
 
 end
