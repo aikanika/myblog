@@ -12,7 +12,6 @@ class SessionsController < ApplicationController
       if @user.activated?
         log_in @user
         params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
-        sign_in(@user)
         redirect_to posts_path
       else
         message  = "アカウントは有効になっていません。"
