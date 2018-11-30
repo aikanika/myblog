@@ -8,18 +8,19 @@ class ApplicationController < ActionController::Base
   #CSRF対策
   protect_from_forgery with: :exception
 
+  # 現在ログイン中のユーザーを返す (いる場合)
   def current_user
-    # cookieからトークンを取得後ハッシュ化
-    remember_token = User.digest(cookies[:user_remember_token])
-    # cookieと同じトークンダイジェストを持ったユーザを取得
-    @current_user ||= User.find_by(remember_digest: remember_token)
-
+    if (user_id = session[:user_id])
+      @current_user ||= User.find_by(id: user_id)
+    elsif (user_id = cookies.signed[:user_id])
+      user = User.find_by(id: user_id)
+      if user && user.authenticated?(:remember, cookies[:remember_token])
+        log_in user
+        @current_user = user
+      end
+    end
   end
 
-  def sign_out
-    @current_user = nil
-    cookies.delete(:user_remember_token)
-  end
 
 
 private

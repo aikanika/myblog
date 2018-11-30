@@ -16,6 +16,9 @@ class User < ActiveRecord::Base
   def self.digest(token)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                       BCrypt::Engine.cost
+    # logger.debug 'BCrypt::Engine::MIN_COST:'+BCrypt::Engine::MIN_COST.to_s
+    # logger.debug 'BCrypt::Engine.cost:'+BCrypt::Engine.cost.to_s
+    # logger.debug 'cost:'+cost.to_s
     BCrypt::Password.create(token, cost: cost)
   end
 
@@ -27,7 +30,7 @@ class User < ActiveRecord::Base
   end
 
   # パスワード再設定のメールを送信する
-  def send_password_reset_email
+  def send_password_reset_mail
     UserMailer.password_reset(self).deliver_now
   end
 
@@ -37,7 +40,7 @@ class User < ActiveRecord::Base
     return false if digest.nil?
     BCrypt::Password.new(digest).is_password?(token)
   end
-  
+
   # 永続的セッションで使用するユーザーをデータベースに記憶する
   def remember
     self.remember_token = User.new_token
@@ -60,6 +63,11 @@ class User < ActiveRecord::Base
     UserMailer.account_activation(self).deliver_now
   end
 
+  # パスワード再設定の期限が切れている場合はtrueを返す
+  def password_reset_expired?
+    reset_sent_at < 2.hours.ago
+  end
+  
 private
 
   # メールアドレスをすべて小文字にする

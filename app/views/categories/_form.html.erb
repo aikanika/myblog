@@ -13,14 +13,15 @@
       <%= image_tag @category.image.url, size: '100x100' %>
     <%end%>
   </div>
+
   <div class="form-group">
     <%= f.label :image, '新しいアイコン画像' %>
-    <%= f.file_field :image, class: 'form-control'  %>
-    <div id="preview"></div>
+    <%= f.file_field :image  %>
+    <div id="preview" style="max-height:100px;max-width:100px"></div>
 
   </div>
 
-  <div class="al-c"><%= f.submit  class: 'btn btn-primary' %></div>
+  <div class="al-c"><%= f.submit %></div>
 <% end %>
 
 <script>
@@ -42,5 +43,5 @@
    reader.readAsDataURL(f);
    }
   }
-  document.getElementById('user_image').addEventListener('change',Filepreview,false);
+  document.getElementById('category_image').addEventListener('change',Filepreview,false);
 </script>
