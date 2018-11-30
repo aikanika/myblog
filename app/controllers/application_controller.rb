@@ -11,15 +11,9 @@ class ApplicationController < ActionController::Base
   def current_user
     # cookieからトークンを取得後ハッシュ化
     remember_token = User.digest(cookies[:user_remember_token])
-    # cookieと同じトークンを持ったユーザを取得
-    @current_user ||= User.find_by(remember_token: remember_token)
-  end
+    # cookieと同じトークンダイジェストを持ったユーザを取得
+    @current_user ||= User.find_by(remember_digest: remember_token)
 
-  def sign_in(user)
-    remember_token = User.new_token
-    cookies.permanent[:user_remember_token] = remember_token
-    User.update(remember_token: User.digest(remember_token))
-    @current_user = user
   end
 
   def sign_out

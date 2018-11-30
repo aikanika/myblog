@@ -4,6 +4,9 @@
     = f.text_field :mail
     = f.label 'パスワード'
     = f.password_field :password
+    = f.label :remember_me, class: "checkbox inline" do
+      = f.check_box :remember_me
+      span このコンピュータにパスワードを記憶させる
 
   - flash.each do |key, value|
     = content_tag :div, value, class: "error"
