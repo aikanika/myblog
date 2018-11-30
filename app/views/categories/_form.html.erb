@@ -1,28 +1,23 @@
-<%= form_for @user do |f| %>
-  <h1>プロフィール編集</h1>
+<%# newとeditで共通 %>
+<%= form_for @category do |f| %>
   <div class="form-group">
-    <%= f.label :name, '名前' %>
+    <%= f.label :name, 'カテゴリ名' %>
     <%= f.text_field :name, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= f.label :image, 'プロフィール画像 ＜現在登録されている画像＞' %>
-    <%if @user.image.blank? %>
+    <%= f.label :image, 'アイコン画像 ＜現在登録されている画像＞' %>
+    <%if @category.image.blank? %>
       なし
     <%else%>
-      <%= image_tag @user.image.url, size: '200x200' %>
+      <%= image_tag @category.image.url, size: '100x100' %>
     <%end%>
   </div>
   <div class="form-group">
-    <%= f.label :image, '新しいプロフィール画像' %>
+    <%= f.label :image, '新しいアイコン画像' %>
     <%= f.file_field :image, class: 'form-control'  %>
     <div id="preview"></div>
 
-  </div>
-
-  <div class="form-group">
-    <%= f.label :introduction, '自己紹介文' %>
-    <%= f.text_area :introduction, :size => "80x5",  class: 'form-control'  %>
   </div>
 
   <div class="al-c"><%= f.submit  class: 'btn btn-primary' %></div>

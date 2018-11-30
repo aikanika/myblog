@@ -1,5 +1,6 @@
 article class="tech-article"
   h1 過去の記事一覧
+
   ul
     = form_tag(posts_path, method: "get") do
       = select_tag( :category_id,

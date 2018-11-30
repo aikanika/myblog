@@ -1,0 +1,12 @@
+article class="tech-article"
+  - provide(:title, "Forgot password")
+  h1 パスワード再設定
+  .form-group
+    = form_for(:password_reset, url: password_resets_path) do |f|
+      = f.label 'メールアドレス'
+      = f.email_field :mail, class: 'form-control'
+
+      - flash.each do |key, value|
+        = content_tag :div, value, class: "error"
+
+      = f.submit '送信'

@@ -5,4 +5,11 @@
     = f.label 'パスワード'
     = f.password_field :password
 
+  - flash.each do |key, value|
+    = content_tag :div, value, class: "error"
+    br/
+
   = f.submit 'ログイン'
+
+  p
+    = link_to "パスワードを忘れた方はこちら", new_password_reset_path

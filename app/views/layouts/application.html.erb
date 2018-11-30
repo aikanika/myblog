@@ -26,7 +26,10 @@
               <% if @categories.present?  #カテゴリがある時表示 %>
                 <% @categories.each do |category| %>
                 <li>
-                  <%= link_to category.name, root_path(category_id: category.id) %>
+                <%= link_to ( {href: root_path(category_id: category.id)} )do %>
+                      <%= image_tag category.image.url, class: 'icon' %>
+                      <span class='text'><%= category.name %></span>
+                  <% end %>
                 </li>
                 <% end %>
               <% end %>
@@ -40,8 +43,9 @@
             <button name="menu" type="submit" class="toggle-menu show-menu">MENU </button>
           <% end %>
 
-          <% if controller.controller_name == "posts" %>
-            <%= render 'header' %>
+          <% if controller.controller_name.in?(["posts","categories"]) ||
+              (controller.controller_name=="users" && controller.action_name == "edit") %>
+            <%= render 'layouts/header' %>
           <% end %>
         </section>
         <section class='tech__main__inner'>

@@ -1,6 +1,4 @@
 class PostsController < ApplicationController
-  skip_before_action :require_sign_in!, only: [:show]
-
 
   # blog一覧表示
   def index

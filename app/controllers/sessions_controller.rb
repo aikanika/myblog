@@ -9,7 +9,18 @@ class SessionsController < ApplicationController
   def create
     #暗号化されてないパスワードとpassword_digest属性値の一致を検証
     if @user.authenticate(session_params[:password])
-      sign_in(@user)
+      if @user.activated?
+        log_in @user
+        params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
+        sign_in(@user)
+
+      else
+        message  = "アカウントは有効になっていません。"
+        message += "アカウント有効化のメールを確認してください。"
+        flash[:warning] = message
+        render 'new'
+      end
+
     else
       flash.now[:danger] = t('.flash.invalid_password')
       render 'new'
@@ -21,12 +32,23 @@ class SessionsController < ApplicationController
     redirect_to login_path
   end
 
+  def sign_in(user)
+    remember_token = User.new_token
+    cookies.permanent[:user_remember_token] = remember_token
+    user.update!(remember_token: User.digest(remember_token))
+    @current_user = user
+  end
+
   private
 
     def set_user
-      @user = User.find_by!(mail: session_params[:mail])
+      if User.exists?
+        @user = User.find_by!(mail: session_params[:mail])
+      else
+        redirect_to signup_path
+      end
     rescue
-      flash.now[:danger] = t('.flash.invalid_mail')
+      flash.now[:danger] = t('.flash.invalid_password')
       render action: 'new'
     end
 

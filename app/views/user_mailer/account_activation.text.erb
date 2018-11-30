@@ -1,0 +1,6 @@
+<%= @user.name%>様
+
+ブログサイト作成アプリをご利用いただきありがとうございます。
+以下のリンクをクリックして、アカウントを有効化してください。
+
+<%= edit_account_activation_url(@user.activation_token, mail: @user.mail)%>

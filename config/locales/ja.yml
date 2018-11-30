@@ -28,3 +28,8 @@ datetime:
     over_x_years:
       one:   "1年以上"
       other: "%{count}年以上"
+
+ja:
+  sessions:
+    flash:
+      invalid_password: "メールアドレスまたはパスワードが無効です。"

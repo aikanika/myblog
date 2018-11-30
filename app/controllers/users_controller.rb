@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    # @current_user = User.find(params[:id])
   end
 
   def update
@@ -27,6 +27,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      @user.send_activation_email
+      flash[:info] = "あなたのアカウントを有効にするメールを確認してください。"
       redirect_to login_path
     else
       render 'new'
