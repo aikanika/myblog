@@ -43,6 +43,9 @@ class CategoriesController < ApplicationController
   def destroy
     @category = Category.find(params[:id])
     @category.destroy
+  rescue ActiveRecord::InvalidForeignKey
+    flash[:danger] = @category.name + 'は記事が存在するため削除できません。'
+  ensure
     redirect_to categories_path #一覧に戻る
   end
 

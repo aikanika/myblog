@@ -1,0 +1,16 @@
+section.tech__main__footer
+  .footer-inner
+    .footer-left
+      - if @user.blank?
+        .footer-photo style=("background-image: ")
+      - else
+        .footer-photo style=("background-image: url(#{@user.image.url})")
+    .footer-right
+      - if @user.present?
+        h3.footer-title
+          = @user.name
+        p.footer-profile= @user.introduction
+section.tech__footer
+  | © &nbsp;
+  | 2018 &nbsp;
+  | Myblog.jp

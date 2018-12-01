@@ -1,10 +1,11 @@
 article class="tech-article"
+  = render 'shared/error_messages'
   h1 カテゴリ一覧
   = button_to "新規作成", {:action => "new"} ,method: :get
   ul
     - @categories_list.each do |c|
       h1[class='tech-article__title']
-        span =c.name
+        span =c.name+' '
         = link_to '[Edit]', edit_category_path(c), class: 'command'
         = link_to '[x]', category_path(c), method: :delete,  class: 'command',  data:{ confirm: '削除しますか?'}
   = paginate @categories_list

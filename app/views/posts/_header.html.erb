@@ -1,8 +1,0 @@
-<!-- Sample menu definition -->
-  <ul id="main-menu" class="sm sm-clean">
-    <li><%= link_to '新規投稿', new_post_path %></li>
-    <li><%= link_to '過去の記事', posts_path %></li>
-    <li><%= link_to 'カテゴリ管理', new_post_path %></li>
-    <li><%= link_to 'プロフィール修正', edit_user_path(@current_user) %></li>
-    <li><%= link_to 'ログアウト', logout_path,method: :delete, :confirm => 'Are you sure?'  %></li>
-  </ul>

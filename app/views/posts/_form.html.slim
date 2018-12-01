@@ -1,0 +1,39 @@
+= form_for @post do |f|
+  p
+    = f.collection_select(:category_id, Category.all, :id, :name, :selected => @post.category_id,:include_blank => 'カテゴリを選択してください')
+    - if@post.errors.messages[:category_id].any?
+      span.error= @post.errors.full_messages_for(:category_id)[0]
+  p
+    = f.text_field :title,placeholder: 'タイトルを入力してください'
+    - if@post.errors.messages[:title].any?
+      span.error= @post.errors.full_messages_for(:title)[0]
+  p
+    | ※複数タグをカンマ区切りで入力できます。
+    = text_field_tag 'post[tag_list]', @post.tag_list.join(',')
+  p
+  #editor
+    | ※マークダウンが使えます。
+    textarea#n.form-control debounce="50" name="post[body]" placeholder="記事内容を入力してください" rows="20" v-model="input" = @post.body
+    - if@post.errors.messages[:body].any?
+      span.error= @post.errors.full_messages_for(:body)[0]
+    | プレビュー
+    .preview
+      div style=("width: 650px;") v-html=("input | marked")
+  p
+    label.checkbox-inline
+      = f.check_box :published,{},checked_value = "1", unchecked_value = "0"
+      | 公開
+  p
+    = f.submit
+javascript:
+   $(document).ready(function(){
+     new Vue({
+       el: '#editor',
+       data: {
+         input: '#{j @post.body}',
+       },
+       filters: {
+         marked: marked,
+       },
+     });
+   });

@@ -1,0 +1,39 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    title Myblog
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js"
+    script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.js"
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    .tech
+      section.tech__menu
+        .tech__menu__inner
+          nav
+            ul
+              li.home
+                a href="/"
+                  span.text Myblog.jp
+                  button.close.toggle-menu name="button" type="submit"  x
+              - if @categories.present?  #カテゴリがある時表示
+                - @categories.each do |category|
+                  li
+                    = link_to ( {href: root_path(category_id: category.id)} )do
+                      = image_tag category.image.url, class: 'icon'
+                      span.text= category.name
+      section.tech__main
+        section.tech__main__header
+          - if controller.controller_name == "blogs"
+            button.toggle-menu.show-menu name="menu" type="submit"  MENU
+          - if controller.controller_name.in?(["posts","categories"]) || (controller.controller_name=="users" && controller.action_name == "edit")
+            = render 'layouts/header'
+        section.tech__main__inner
+          .tech__main__inner__content
+            = yield
+          .tech__main__inner__side
+        - if controller.controller_name == "blogs"
+          = render 'footer'

@@ -1,0 +1,15 @@
+article.tech-article
+  h2.tech-article__title= @post.title
+  /! 改行を有効にする：simple_format
+  = markdown(@post.body)
+  h3 コメントをどうぞ
+  - if @post.comments.any?
+    ul
+      - @post.comments.each do |comment|
+        li
+          = comment.body
+  = form_for([@post, @post.comments.build]) do |f|
+    p
+      = f.text_field :body
+    p
+      = f.submit
