@@ -1,7 +1,6 @@
 article.tech-article
   h2.tech-article__title= @post.title
-  /! 改行を有効にする：simple_format
-  = markdown(@post.body)
+  = markdown(@post.body).html_safe
   h3 コメントをどうぞ
   - if @post.comments.any?
     ul

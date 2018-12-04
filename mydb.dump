@@ -20,7 +20,7 @@ SET row_security = off;
 --
 
 COPY public.ar_internal_metadata (key, value, created_at, updated_at) FROM stdin;
-environment	development	2018-11-20 08:34:47.290276	2018-11-20 08:34:47.290276
+environment	development	2018-11-30 03:38:48.457471	2018-11-30 03:38:48.457471
 \.
 
 
@@ -28,10 +28,11 @@ environment	development	2018-11-20 08:34:47.290276	2018-11-20 08:34:47.290276
 -- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: test
 --
 
-COPY public.categories (id, name, created_at, updated_at) FROM stdin;
-1	Category 1	2018-11-20 08:34:55.826394	2018-11-20 08:34:55.826394
-2	Category 2	2018-11-20 08:34:55.838744	2018-11-20 08:34:55.838744
-3	Category 3	2018-11-20 08:34:55.851523	2018-11-20 08:34:55.851523
+COPY public.categories (id, name, image, created_at, updated_at) FROM stdin;
+2	Vagrant	vagrant.svg	2018-11-30 14:21:55.3986	2018-11-30 14:21:55.3986
+3	Heroku	heroku.svg	2018-11-30 14:57:55.551205	2018-11-30 14:57:55.551205
+5	CentOS	centos.png	2018-12-02 06:38:23.357998	2018-12-02 06:38:23.357998
+6	RAILS	rails.png	2018-12-02 06:46:32.777778	2018-12-02 06:46:32.777778
 \.
 
 
@@ -39,23 +40,19 @@ COPY public.categories (id, name, created_at, updated_at) FROM stdin;
 -- Name: categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: test
 --
 
-SELECT pg_catalog.setval('public.categories_id_seq', 1, false);
+SELECT pg_catalog.setval('public.categories_id_seq', 6, true);
 
 
 --
 -- Data for Name: posts; Type: TABLE DATA; Schema: public; Owner: test
 --
 
-COPY public.posts (id, title, tags, body, image, category_id, published, created_at, updated_at) FROM stdin;
-1	title 1-0	Category1	body 1-0	\N	1	1	2018-11-20 08:34:55.861568	2018-11-20 08:34:55.861568
-2	title 1-1	Category1	body 1-1	\N	1	1	2018-11-20 08:34:55.866451	2018-11-20 08:34:55.866451
-3	title 1-2	Category1	body 1-2	\N	1	1	2018-11-20 08:34:55.869299	2018-11-20 08:34:55.869299
-4	title 2-0	Category2	body 2-0	\N	2	1	2018-11-20 08:34:55.872151	2018-11-20 08:34:55.872151
-5	title 2-1	Category2	body 2-1	\N	2	1	2018-11-20 08:34:55.875032	2018-11-20 08:34:55.875032
-6	title 3-0	Category3	body 3-0	\N	3	1	2018-11-20 08:34:55.877918	2018-11-20 08:34:55.877918
-7	title 3-1	Category3	body 3-1	\N	3	1	2018-11-20 08:34:55.880728	2018-11-20 08:34:55.880728
-8	title 3-2	Category3	body 3-2	\N	3	1	2018-11-20 08:34:55.883582	2018-11-20 08:34:55.883582
-9	title 3-3	Category3	body 3-3	\N	3	1	2018-11-20 08:34:55.886686	2018-11-20 08:34:55.886686
+COPY public.posts (id, title, body, image, category_id, published, created_at, updated_at) FROM stdin;
+2	[CentOS]よく使うコマンド集	■IPアドレスを調べる\r\n\r\n```\r\nip a\r\n```\r\n\r\n■OSのバージョンを調べる\r\n\r\n```\r\ncat /etc/redhat-release\r\n```\r\n\r\n■64bitか32bitかを確認\r\n\r\n```\r\narch\r\n```\r\n\r\n 結果に、"x86_64"と表示されたら64bit、"i686"と表示されたら32bit。\r\n\r\n■設定されている現在時刻の確認\r\n\r\n```\r\ndate\r\n```	\N	5	1	2018-11-30 15:17:56.435191	2018-12-03 11:35:33.07081
+1	Viコマンド一覧	|||\r\n|:------------:|:-----------|\r\n|gg|先頭行に移動|\r\n|G |最終行に移動|\r\n|10G|10行目に移動　※数字は任意|\r\n|H|表示画面の一番上の行へ移動|\r\n|M|表示画面の真ん中の行へ移動|\r\n|L|表示画面の一番下の行へ移動|\r\n|/(キーワード)|（キーワード）を検索　※順方向|\r\n|?(キーワード)|（キーワード) を検索　※逆方向|\r\n|n|（キーワード）に合致する次の文字を検索　※順方向|\r\n|N|（キーワード）に合致する次の文字を検索　※逆方向|\r\n|x |1文字削除|\r\n|dd|1行削除|\r\n|3dd|3行削除　※数字は任意|\r\n|:q!|変更内容を破棄してviを抜ける|\r\n|:wq!|変更内容を保存してviを抜ける|\r\n|a|入力モードへ移行|	\N	5	1	2018-11-30 15:02:31.635833	2018-12-03 11:13:09.645018
+3	[RAILS]よく使うコマンド集	■myappというディレクトリを作成し、必要なファイルをざっと作成する\r\n\r\n```\r\nrails new myapp\r\n```\r\n\r\n■webサーバーを起動(バックグラウンドで起動するdオプション）\r\n\r\n```\r\ncd myapp\r\nrails server -b 192.168.33.10 -d\r\n```\r\n\r\n■webサーバーを停止する\r\n\r\n```\r\ncat tmp/pids/server.pid\r\nkill -9 ↑の番号\r\n```\r\n\r\n■雛形を作る\r\n\r\n```\r\nrails g scaffold モデル名 カラム名:型 カラム名:型・・・\r\n```\r\n\r\n■モデルを作る（マイグレーションファイルを作成）\r\n\r\n```\r\nrails g model モデル名【単数形:Post】 カラム名:型\r\n```\r\n\r\n■DBに反映（マイグレーションファイルを実行）\r\n\r\n```\r\nrails db:migrate \r\n```\r\n\r\n■コントローラーを作る\r\n\r\n```\r\nrails g controller コントローラー名【複数形:Posts】\r\n```\r\n\r\n■railsコンソールを起動\r\n\r\n```\r\nrails c\r\n```\r\n\r\n■railsコンソール終了\r\n\r\n```\r\nexit\r\n```\r\n\r\n■Rails上の複数形を確認\r\n\r\n```\r\nrails c\r\n"単語".pluralize\r\n```\r\n\r\n例）category → categories\r\n\r\n■DBへ初期データを登録\r\n\r\ndb/seeds.rbに初期データ作成コードを記載\r\n\r\n```\r\nrails db:seed\r\n```\r\n\r\n■テーブルを削除して新しく作り直す\r\n\r\n```\r\nrails db:migrate:reset\r\n```\r\n\r\n■データベース内容確認コンソール起動\r\n\r\n```\r\nrails db\r\n```\r\n\r\n■ルーティングの確認\r\n\r\nURLごとにコントローラーのどのメソッドを実行するかをconfig/routes.rbに記載\r\n\r\n```\r\nrails routes\r\n```\r\n\r\n\r\n	\N	6	1	2018-12-03 11:26:09.933951	2018-12-03 15:22:52.255545
+4	[Heroku]DB関連コマンド集	（前提）\r\n　HerokuはDBにPostgresを推奨しており、railsで標準のSQLiteは使用できない。\r\n\r\n■ローカルからHerokuへデータ移行\r\n\r\n※テーブル定義は移行しない。データのみ。\r\n\r\n```\r\nPGUSER=（ユーザー名） pg_dump -a  （ローカルDB名）> （ファイル名）.dump\r\nheroku pg:psql DATABASE_URL < （ファイル名）.dump\r\n```\r\n\r\n■Heroku上のログを確認\r\n\r\n```\r\nheroku logs\r\n```\r\n\r\n■テーブル定義をrailsの定義と合わせる場合\r\n\r\n※Heroku上のDBデータはすべて消去される\r\n\r\n```\r\nheroku pg:reset\r\nheroku run rails db:migrate\r\n```\r\n\r\n	\N	3	1	2018-12-03 15:32:42.445997	2018-12-03 15:32:42.445997
+5	[Vagrant]よく使うコマンド集	■ヘルプを表示\r\n\r\nvagrantで実行できるコマンドの一覧を表示する\r\n\r\n```\r\nvagrant -h\r\n```\r\n\r\n■vagrant [コマンド]のオプションや引数のヘルプを表示\r\n\r\n```\r\nvagrant [コマンド] -h\r\n```\r\n■仮想環境をセットアップ\r\n\r\nVagrantで起動するために必要なVagrantfileが生成される \r\n\r\n```\r\nvagrant init\r\n```\r\n\r\n■Vagrantfileで指定したBoxから仮想環境を起動\r\n\r\n```\r\nvagrant up\r\n```\r\n\r\n■起動中の仮想環境を一時停止\r\n\r\n```\r\nvagrant suspend\r\n```\r\n\r\n■起動中の仮想環境を終了\r\n\r\n仮想環境の電源を落とすので復帰時間はvagrant suspendよりかかる\r\n\r\n```\r\nvagrant halt\r\n```	\N	2	1	2018-12-04 00:59:33.778048	2018-12-04 00:59:33.778048
 \.
 
 
@@ -78,7 +75,7 @@ SELECT pg_catalog.setval('public.comments_id_seq', 1, false);
 -- Name: posts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: test
 --
 
-SELECT pg_catalog.setval('public.posts_id_seq', 9, true);
+SELECT pg_catalog.setval('public.posts_id_seq', 5, true);
 
 
 --
@@ -90,16 +87,69 @@ COPY public.schema_migrations (version) FROM stdin;
 20181007095942
 20181007101128
 20181007113636
+20181124143250
+20181124143251
+20181124143252
+20181124143253
+20181124143254
+20181124143255
+20181127021811
+20181128034256
+20181129133645
 \.
+
+
+--
+-- Data for Name: taggings; Type: TABLE DATA; Schema: public; Owner: test
+--
+
+COPY public.taggings (id, tag_id, taggable_type, taggable_id, tagger_type, tagger_id, context, created_at) FROM stdin;
+9	6	Post	2	\N	\N	tags	2018-12-03 04:27:12.597886
+10	6	Post	1	\N	\N	tags	2018-12-03 10:28:50.456998
+11	7	Post	1	\N	\N	tags	2018-12-03 10:28:50.470178
+12	8	Post	3	\N	\N	tags	2018-12-03 11:26:09.961446
+13	9	Post	4	\N	\N	tags	2018-12-03 15:32:42.469078
+14	5	Post	5	\N	\N	tags	2018-12-04 00:59:33.795677
+\.
+
+
+--
+-- Name: taggings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: test
+--
+
+SELECT pg_catalog.setval('public.taggings_id_seq', 14, true);
+
+
+--
+-- Data for Name: tags; Type: TABLE DATA; Schema: public; Owner: test
+--
+
+COPY public.tags (id, name, taggings_count) FROM stdin;
+4	d	0
+3	c	0
+2	b	0
+1	a	0
+6	CentOS	2
+7	vi	1
+8	RAILS	1
+9	Heroku	1
+5	Vagrant	1
+\.
+
+
+--
+-- Name: tags_id_seq; Type: SEQUENCE SET; Schema: public; Owner: test
+--
+
+SELECT pg_catalog.setval('public.tags_id_seq', 9, true);
 
 
 --
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: test
 --
 
-COPY public.users (id, name, mail, password_digest, remember_token, image, introduction, created_at, updated_at) FROM stdin;
-2	愛華	test2@gmail.com	$2a$10$1e6k52RuF7spUFBmSJy8/eVAPavQfGAPLUBjV0nBBW.X84hCjsYge	\N	\N	\N	2018-11-20 08:49:48.139002	2018-11-20 08:49:48.139002
-1	test_user	test@gmail.com	$2a$10$HwjtT6pD2CfVJBioWFJevOuR.m7OeFVbyt2rKk3sni/vB95PNCSJ6	b473d927a683803070d1050091d37d7d395a413888f99727625f32c3ec705a0d	0115.png	WebDevelopper/Project Manager	2018-11-20 08:34:55.897296	2018-11-20 14:23:22.388276
+COPY public.users (id, name, mail, password_digest, image, introduction, created_at, updated_at, reset_digest, reset_sent_at, activation_digest, activated, activated_at, remember_digest) FROM stdin;
+1	A.N	test@gmail.com	$2a$10$7lTilHXHKurX1eNm4ndcse.eSIPS4syHnph/kN6YcJKbS3ECPXOcq	0115.png	WebDevelopper / System Engineer	2018-11-30 04:06:50.081624	2018-12-04 01:02:41.670525	$2a$10$iR0ZmWZkmJxtp0.PiZR0OOGTzzAALuYhaU3fFPs0dSbs9sMZHU.kG	2018-12-04 01:01:57.459199	$2a$10$oBP51zyixF8NhCO8UH73z.SjqMO1dkQkghX7rGzfkqE7R5g88RisS	t	2018-11-30 04:07:05.894213	\N
 \.
 
 
@@ -107,7 +157,7 @@ COPY public.users (id, name, mail, password_digest, remember_token, image, intro
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: test
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 2, true);
+SELECT pg_catalog.setval('public.users_id_seq', 1, true);
 
 
 --

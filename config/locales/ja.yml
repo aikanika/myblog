@@ -33,3 +33,7 @@ ja:
   sessions:
     flash:
       invalid_password: "メールアドレスまたはパスワードが無効です。"
+      not_active_account: "アカウントは有効になっていません。アカウント有効化のメールを確認してください。"
+  posts:
+    flash:
+      input_error: "入力に誤りがあります。"

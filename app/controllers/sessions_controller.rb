@@ -14,9 +14,7 @@ class SessionsController < ApplicationController
         params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
         redirect_to posts_path
       else
-        message  = "アカウントは有効になっていません。"
-        message += "アカウント有効化のメールを確認してください。"
-        flash[:warning] = message
+        flash.now[:warning] = t('.flash.not_active_account')
         render 'new'
       end
 

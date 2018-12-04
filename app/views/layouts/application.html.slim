@@ -22,7 +22,7 @@ html
               - if @categories.present?  #カテゴリがある時表示
                 - @categories.each do |category|
                   li
-                    = link_to ( {href: root_path(category_id: category.id)} )do
+                    = link_to blogs_path(category_id: category.id) do
                       = image_tag category.image.url, class: 'icon'
                       span.text= category.name
       section.tech__main

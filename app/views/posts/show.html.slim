@@ -1,6 +1,5 @@
 article.tech-article
   h2.tech-article__title= @post.title
-  /! 改行を有効にする：simple_format
   .tech-article__body
-    = markdown(@post.body)
+    = markdown(@post.body).html_safe
   = link_to '戻る', :back

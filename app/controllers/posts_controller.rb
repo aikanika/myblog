@@ -31,6 +31,7 @@ class PostsController < ApplicationController
       redirect_to posts_path
     else
       # render plain: @post.errors.inspect
+      flash.now[:danger] = t('.flash.input_error')
       render 'new'
     end
   end
@@ -47,6 +48,7 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to posts_path #一覧に戻る
     else
+      flash.now[:danger] = t('.flash.input_error')
       render 'edit'
     end
   end

@@ -11,6 +11,11 @@ article class="tech-article"
     - @posts.each do |post|
       h1[class='tech-article__title']
         = link_to post.title, post_path(post)
-        = link_to '[Edit]', edit_post_path(post), class: 'command'
-        = link_to '[x]', post_path(post), method: :delete,  class: 'command',  data:{ confirm: '削除しますか?'}
+        = link_to ' [Edit]', edit_post_path(post), class: 'command'
+        = link_to ' [x]', post_path(post), method: :delete,  class: 'command',  data:{ confirm: '削除しますか?'}
+        - post.published == 1 ? pub='(公開中)' : pub='(未公開)'
+        = ' ' + pub
+      .tech-article__date
+        = date_format(post.updated_at)
+
   = paginate @posts

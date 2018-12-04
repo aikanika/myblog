@@ -1,25 +1,35 @@
 module ApplicationHelper
-  class CodeRayify < Redcarpet::Render::HTML
-      def block_code(code, language)
-        CodeRay.scan(code, language).div(:line_numbers => :table)
+  class HTMLwithCoderay < Redcarpet::Render::HTML
+    def block_code(code, language)
+      case language.to_s
+      when 'rb'
+        lang = 'ruby'
+      when 'yml'
+        lang = 'yaml'
+      when ''
+        # 空欄のままだと「Invalid id given:」エラー
+        lang = 'md'
+      else
+        lang = language
       end
-    end
 
-    def markdown(text)
-      coderayified = CodeRayify.new(:filter_html => true, :hard_wrap => true)
-      options = {
-        :fenced_code_blocks => true,
-        :no_intra_emphasis  => true,
-        :autolink           => true,
-        :strikethrough      => true,
-        :lax_html_blocks    => true,
-        :superscript        => true
-       }
-       markdown_to_html = Redcarpet::Markdown.new(coderayified, options)
-       markdown_to_html.render(text).html_safe
+      CodeRay.scan(code, lang).div
     end
+  end
 
-    def date_format(datetime)
-      time_ago_in_words(datetime) + '前'
-    end
+  def markdown(text)
+    html_render = HTMLwithCoderay.new(filter_html: true, hard_wrap: true)
+    options = {
+      autolink: true,
+      space_after_headers: true,
+      fenced_code_blocks: true,
+      tables: true,
+    }
+    markdown    = Redcarpet::Markdown.new(html_render, options)
+    markdown.render(text)
+  end
+
+  def date_format(datetime)
+    time_ago_in_words(datetime) + '前'
+  end
 end
